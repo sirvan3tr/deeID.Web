@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 // Blockchain Specifics
 // Contracts and JSONRPC Library
-import omneePortalContract from '../build/contracts/omneePortal.json'
-import omneeIDContract from '../build/contracts/omneeID.json'
+import deeIDPortalContract from '../build/contracts/deeIDPortal.json'
+import deeIDContract from '../build/contracts/deeID.json'
 import getWeb3 from './utils/getWeb3'
 
 class userInitialisation extends Component {
@@ -16,7 +16,7 @@ class userInitialisation extends Component {
         surname: null,
         email: null,
         nhsNumber: null,
-        omneeIDAddress: null
+        deeIDAddress: null
       };
 
       this.state = {
@@ -72,20 +72,20 @@ class userInitialisation extends Component {
       const contract = require('truffle-contract') ;
   
       // Get the contracts
-      const omneePortal = contract(omneePortalContract) ;
-      const omneeID = contract(omneeIDContract) ;
+      const deeIDPortal = contract(deeIDPortalContract) ;
+      const deeID = contract(deeIDContract) ;
 
-      omneePortal.setProvider(this.state.web3.currentProvider) ;
-      omneeID.setProvider(this.state.web3.currentProvider) ;
+      deeIDPortal.setProvider(this.state.web3.currentProvider) ;
+      deeID.setProvider(this.state.web3.currentProvider) ;
   
       // Declaring this for later so we can chain functions
-      var omneePortalInstance, omneeIDInstance ;
+      var deeIDPortalInstance, deeIDInstance ;
 
       // Get accounts.
       this.state.web3.eth.getAccounts((error, accounts) => {
-        omneePortal.deployed().then((instance) => {
-          omneePortalInstance = instance
-          return omneePortalInstance.userExists.call({from: accounts[0]})
+        deeIDPortal.deployed().then((instance) => {
+          deeIDPortalInstance = instance
+          return deeIDPortalInstance.userExists.call({from: accounts[0]})
         }).then((result) => {
           console.log("------>" + this.userDetails.accountAddress + "dd")
           if(result.c[0] === 1) // user doesn't exist, we need to create an id
@@ -97,15 +97,15 @@ class userInitialisation extends Component {
             this.userDetails.registered = true;
           }
         }).then((result) => {
-          console.log('Getting omneeID address');
-          // get the omneeID ID
-          return omneePortalInstance.id.call({from: accounts[0]})
+          console.log('Getting deeID address');
+          // get the deeID ID
+          return deeIDPortalInstance.id.call({from: accounts[0]})
         }).then((result) => {
           console.log(result);
-          this.userDetails.omneeIDAddress = result;
-          console.log('Connecting to omneeID contract to get info');
-          omneeIDInstance = omneeID.at(result);
-          return omneeIDInstance.getInfo.call({from: accounts[0]})
+          this.userDetails.deeIDAddress = result;
+          console.log('Connecting to deeID contract to get info');
+          deeIDInstance = deeID.at(result);
+          return deeIDInstance.getInfo.call({from: accounts[0]})
         }).then((result) => {
           console.log(result);
           if (result === undefined || result === null || result[0] === "") {

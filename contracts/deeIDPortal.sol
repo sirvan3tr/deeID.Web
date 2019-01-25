@@ -1,16 +1,17 @@
-pragma solidity ^0.4.6;
-import "./omneeID.sol";
+pragma solidity ^0.5.0;
+import "./deeID.sol";
 
-contract omneePortal {
+contract deeIDPortal {
     mapping (address => address) public directory;
-    address public usersOmneeID; // tmp store to retrieve id of new con'
+    address public usersDID; // tmp store to retrieve id of new con'
     
     // Create a new identity
     function createID() public returns (bool status_, address newID_) {
-        if (directory[msg.sender] == 0) {
-            address newID = new omneeID(msg.sender);
+        if (directory[msg.sender] == address(0)) {
+            deeID newDID = new deeID(msg.sender);
+            address newID = address(newDID);
             directory[msg.sender] = newID;
-            usersOmneeID = directory[msg.sender];
+            usersDID = directory[msg.sender];
             return (true, newID);
         } else {
             return (false, address(0));
@@ -22,7 +23,7 @@ contract omneePortal {
 
     // Returns the users contract address
     function returnID() public view returns(bool status_, address omneeID_) {
-        if (directory[msg.sender] == 0) {
+        if (directory[msg.sender] == address(0)) {
             return (false, address(0));
         } else {
             return (true, directory[msg.sender]);

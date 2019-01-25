@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 // Blockchain Specifics
 // Contracts and JSONRPC Library
-import omneePortalContract from '../build/contracts/omneePortal.json'
-import omneeIDContract from '../build/contracts/omneeID.json'
+import deeIDPortalContract from '../build/contracts/deeIDPortal.json'
+import deeIDContract from '../build/contracts/deeID.json'
 import getWeb3 from './utils/getWeb3'
 
 // Router
@@ -39,18 +39,18 @@ class userRegistration extends userInitialisation {
 
     const contract = require('truffle-contract') ;
 
-    const omneePortal = contract(omneePortalContract) ;
-    const omneeID = contract(omneeIDContract) ;
+    const deeIDPortal = contract(deeIDPortalContract) ;
+    const deeID = contract(deeIDContract) ;
     
-    omneePortal.setProvider(this.web3.currentProvider) ;
-    omneeID.setProvider(this.web3.currentProvider) ;
+    deeIDPortal.setProvider(this.web3.currentProvider) ;
+    deeID.setProvider(this.web3.currentProvider) ;
 
-    var omneePortalInstance, omneeIDInstance;
+    var deeIDPortalInstance, deeIDInstance;
 
     this.web3.eth.getAccounts((error, accounts) => {
-      omneePortal.deployed().then((instance) => {
-        omneePortalInstance = instance ;
-        return omneePortalInstance.createID.sendTransaction(
+      deeIDPortal.deployed().then((instance) => {
+        deeIDPortalInstance = instance ;
+        return deeIDPortalInstance.createID.sendTransaction(
           1, 'Sirvan', 'Almasi', 'email', '9876544321', {from: accounts[0]})
       }).then((result) => {
         console.log(result)

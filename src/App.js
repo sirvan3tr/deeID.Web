@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 // Blockchain Specifics
 // Contracts and JSONRPC Library
-import omneePortalContract from '../build/contracts/omneePortal.json'
-import omneeIDContract from '../build/contracts/omneeID.json'
+import deeIDPortalContract from '../build/contracts/deeIDPortal.json'
+import deeIDContract from '../build/contracts/deeID.json'
 import getWeb3 from './utils/getWeb3'
 
 // Router

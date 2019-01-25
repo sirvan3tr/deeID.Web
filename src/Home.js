@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 // Blockchain Specifics
 // Contracts and JSONRPC Library
-import omneePortalContract from '../build/contracts/omneePortal.json'
-import omneeIDContract from '../build/contracts/omneeID.json'
-import omneeRegistryContract from '../build/contracts/omneeRegistry.json'
+import deeIDPortalContract from '../build/contracts/deeIDPortal.json'
+import deeIDContract from '../build/contracts/deeID.json'
+import deeIDRegistryContract from '../build/contracts/deeIDRegistry.json'
 
 import getWeb3 from './utils/getWeb3'
 
@@ -40,11 +40,11 @@ class Home extends userInitialisation {
     const contract = require('truffle-contract') ;
 
     // Get the contracts
-    //const omneePortal = contract(omneePortalContract) ;
-    //const omneeID = contract(omneeIDContract) ;
-    const omneeRegistry = contract(omneeRegistryContract);
+    //const deeIDPortal = contract(deeIDPortalContract) ;
+    //const deeID = contract(deeIDContract) ;
+    const omneeRegistry = contract(deeIDRegistryContract);
 
-    //omneePortal.setProvider(this.web3.currentProvider);
+    //deeIDPortal.setProvider(this.web3.currentProvider);
     
     //omneeRegistry.setProvider(this.web3.currentProvider);
     // Declaring this for later so we can chain functions
@@ -54,7 +54,7 @@ class Home extends userInitialisation {
     this.web3.eth.getAccounts((error, accounts) => {
       omneeRegistry.deployed().then((instance) => {
         omneeRegistryInstance = instance;
-        return omneeRegistryInstance.getLink.call(this.userDetails.omneeIDAddress, {from: accounts[0]})
+        return omneeRegistryInstance.getLink.call(this.userDetails.deeIDAddress, {from: accounts[0]})
       }).then((result) => {
         console.log("reg-->" + result);
       })
@@ -66,14 +66,14 @@ class Home extends userInitialisation {
     event.preventDefault();
     const contract = require('truffle-contract') ;
 
-    const omneeRegistry = contract(omneeRegistryContract);
+    const omneeRegistry = contract(deeIDRegistryContract);
     omneeRegistry.setProvider(this.web3.currentProvider);
     var omneeRegistryInstance;
 
     this.web3.eth.getAccounts((error, accounts) => {
       omneeRegistry.deployed().then((instance) => {
         omneeRegistryInstance = instance;
-        return omneeRegistryInstance.newLink.sendTransaction('http://google.com', 'Google', this.userDetails.omneeIDAddress, {from: accounts[0]});
+        return omneeRegistryInstance.newLink.sendTransaction('http://google.com', 'Google', this.userDetails.deeIDAddress, {from: accounts[0]});
       }).then((result) => {
         console.log(result);
       })
@@ -95,7 +95,7 @@ class Home extends userInitialisation {
 
     const contract = require('truffle-contract') ;
 
-    const omneeRegistry = contract(omneeRegistryContract);
+    const omneeRegistry = contract(deeIDRegistryContract);
     omneeRegistry.setProvider(this.web3.currentProvider) ;
     var omneeRegistryInstance;
 
@@ -107,7 +107,7 @@ class Home extends userInitialisation {
         omneeRegistry.deployed().then((instance) => {
           i = i + 1;
           omneeRegistryInstance = instance;
-          return omneeRegistryInstance.getALink.call(this.userDetails.omneeIDAddress, i, {from: accounts[0]})
+          return omneeRegistryInstance.getALink.call(this.userDetails.deeIDAddress, i, {from: accounts[0]})
         }).then((result) => {
           console.log("reg-->" + result[0]);
           if(result[0] == "" || result[0] == null) {
