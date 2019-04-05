@@ -11,3 +11,6 @@ make sure you have nodejs and npm
 
 > npm install
 > npm run start
+
+In different console:
+> npm install ganache-cli
