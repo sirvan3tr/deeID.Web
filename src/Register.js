@@ -42,6 +42,16 @@ class userRegistration extends userInitialisation {
     const deeIDPortal = contract(deeIDPortalContract) ;
     const deeID = contract(deeIDContract) ;
     
+    deeID.defaults({ 
+      gas: 4712388,
+      gasPrice: 100000000000
+    });
+
+    deeIDPortal.defaults({
+      gas: 4712388,
+      gasPrice: 100000000000
+    });
+
     deeIDPortal.setProvider(this.web3.currentProvider) ;
     deeID.setProvider(this.web3.currentProvider) ;
 
@@ -50,8 +60,8 @@ class userRegistration extends userInitialisation {
     this.web3.eth.getAccounts((error, accounts) => {
       deeIDPortal.deployed().then((instance) => {
         deeIDPortalInstance = instance ;
-        return deeIDPortalInstance.createID.sendTransaction(
-          1, 'Sirvan', 'Almasi', 'email', '9876544321', {from: accounts[0]})
+        return deeIDPortalInstance.createID.sendTransaction({from: accounts[0]})
+          //1, 'Sirvan', 'Almasi', 'email', '9876544321', {from: accounts[0]})
       }).then((result) => {
         console.log(result)
       })
@@ -71,12 +81,11 @@ class userRegistration extends userInitialisation {
   registerForm() {
       return (
         <div className="row my-3 p-3 bg-white rounded box-shadow justify-content-md-center">
-          <div className="col-md-6">
+          <div className="col-md-12">
             <h3>Welcome,</h3>
             <p>The thing is... you can't have your personal information on the Blockchain! You need our cool mobile phone app. You can register now and using the same public-private key pair login on your phone and initiatilise your details from there? Too much..? well we can also host your data for you if you want?</p>
             Your Ethereum address: <br />
             <p className="address">{this.userDetails.accountAddress}</p>
-
             Use the form below if you wish to sign up and we store your data for you.
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
@@ -101,7 +110,6 @@ class userRegistration extends userInitialisation {
         </div>
       )
     }
-
   render() {
     var form = 'Loading...'
     if (!this.userDetails.registered) {
@@ -116,5 +124,4 @@ class userRegistration extends userInitialisation {
     );
   }
 }
-
 export default userRegistration ;

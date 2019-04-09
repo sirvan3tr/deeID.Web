@@ -58,7 +58,7 @@
     "react-route": "^1.0.3",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "truffle": "^5.0.2",
+    "truffle": "^5.0.11",
     "update": "^0.7.4"
   },
   "scripts": {

@@ -85,27 +85,26 @@ class userInitialisation extends Component {
       this.state.web3.eth.getAccounts((error, accounts) => {
         deeIDPortal.deployed().then((instance) => {
           deeIDPortalInstance = instance
-          return deeIDPortalInstance.userExists.call({from: accounts[0]})
+          return deeIDPortalInstance.returnID.call({from: accounts[0]})
         }).then((result) => {
-          console.log("------>" + this.userDetails.accountAddress + "dd")
-          if(result.c[0] === 1) // user doesn't exist, we need to create an id
+          console.log("------>" + result[0]);
+          console.log("------>" + result[1]);
+          if(result[0] == false) // user doesn't exist, we need to create an id
           {
             console.log('User doesnt exist, attempting to create user') ;
             this.userDetails.registered = false;
+            return false;
           } else {
             console.log('User exists, moving on...');
             this.userDetails.registered = true;
+            this.userDetails.deeIDAddress = result[1];
+            this.forceUpdate();
+            console.log('Connecting to deeID contract to get info');
+            deeIDInstance = deeID.at(result[1]);
           }
-        }).then((result) => {
-          console.log('Getting deeID address');
-          // get the deeID ID
-          return deeIDPortalInstance.id.call({from: accounts[0]})
-        }).then((result) => {
-          console.log(result);
-          this.userDetails.deeIDAddress = result;
-          console.log('Connecting to deeID contract to get info');
-          deeIDInstance = deeID.at(result);
-          return deeIDInstance.getInfo.call({from: accounts[0]})
+
+          
+        /*
         }).then((result) => {
           console.log(result);
           if (result === undefined || result === null || result[0] === "") {
@@ -116,6 +115,8 @@ class userInitialisation extends Component {
             this.forceUpdate()
           }
         })
+        */
+      })
       })
     }
   };

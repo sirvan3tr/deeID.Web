@@ -107,10 +107,10 @@ class App extends userInitialisation {
         />
         <hr />
         <footer className="container">
-          <p>© omnee Data Bank 2018</p>
+          <p>deeID Web</p>
           <span>{this.userDetails.name} {this.userDetails.surname}</span>
-          Your Ethereum address: {this.userDetails.accountAddress} <br />
-          Your omneeID address: {this.userDetails.omneeIDAddress}
+          Your Ethereum public key: {this.userDetails.accountAddress} <br />
+          Your deeID address: {this.userDetails.omneeIDAddress}
         </footer>
 
 
