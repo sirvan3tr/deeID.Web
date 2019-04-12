@@ -64,8 +64,8 @@ class userRegistration extends userInitialisation {
           //1, 'Sirvan', 'Almasi', 'email', '9876544321', {from: accounts[0]})
       }).then((result) => {
         console.log(result)
-      })
-    })
+      });
+    });
   }
 
   handleChange(event) {

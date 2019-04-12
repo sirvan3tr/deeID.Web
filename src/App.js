@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 // Blockchain Specifics
 // Contracts and JSONRPC Library
-import deeIDPortalContract from '../build/contracts/deeIDPortal.json'
-import deeIDContract from '../build/contracts/deeID.json'
+//import deeIDPortalContract from '../build/contracts/deeIDPortal.json'
+//import deeIDContract from '../build/contracts/deeID.json'
 import getWeb3 from './utils/getWeb3'
 
 // Router
@@ -17,6 +17,7 @@ import {
 // Import webpages & custom libraries
 import Contact from "./components/Contact";
 import About from "./components/About";
+import CreateUser from "./components/CreateUser";
 import Register from "./Register";
 import Home from "./Home";
 // Responsible for user login
@@ -61,14 +62,13 @@ class App extends userInitialisation {
       );
     }else {
       return(
-        <button type="button" className="btn btn-light">Welcome, {this.userDetails.name}</button>
+        <button type="button" className="btn btn-light">You're signed in!</button>
       );
     }
   }
 
   render() {
     const userHeaderLogic = this.userHeader();
-    
     return (
       <Router>
       <div className="Container">
@@ -82,6 +82,7 @@ class App extends userInitialisation {
         <Link to="/active" className="p-2 text-dark">Solutions</Link>
         <Link to="/About" className="p-2 text-dark">About</Link>
         <Link to="/Contact" className="p-2 text-dark">Contact</Link>
+        <Link to="/CreateUser" className="p-2 text-dark">Create Users</Link>
       </nav>
       {userHeaderLogic}
     </div>
@@ -105,12 +106,16 @@ class App extends userInitialisation {
           path='/Home'
           render={(props) => <Home {...props} />}
         />
+        <Route
+          path='/CreateUser'
+          render={(props) => <CreateUser {...props} web3={this.state.web3} />}
+        />
         <hr />
         <footer className="container">
           <p>deeID Web</p>
           <span>{this.userDetails.name} {this.userDetails.surname}</span>
           Your Ethereum public key: {this.userDetails.accountAddress} <br />
-          Your deeID address: {this.userDetails.omneeIDAddress}
+          Your deeID address: {this.userDetails.deeIDAddress}
         </footer>
 
 

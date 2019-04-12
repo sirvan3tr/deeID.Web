@@ -22,7 +22,7 @@ contract deeIDPortal {
     function id() public view returns(address) { return directory[msg.sender]; }
 
     // Returns the users contract address
-    function returnID() public view returns(bool status_, address omneeID_) {
+    function returnID() public view returns(bool status_, address deeID_) {
         if (directory[msg.sender] == address(0)) {
             return (false, address(0));
         } else {
