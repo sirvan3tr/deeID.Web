@@ -11,8 +11,8 @@ class About extends Component {
         return (
             <Router>
                 <div className="column middle">
-                    <h1>What is Omnee?</h1>
-                    <h2>omnee is a decentralised identity and data management network</h2>
+                    <h1>What is deeID?</h1>
+                    <h2>deeID is a decentralised identity and data management network</h2>
                     <p> Enter text here for about page</p>
                 </div>
             </Router>

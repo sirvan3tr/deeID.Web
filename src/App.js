@@ -75,8 +75,10 @@ class App extends userInitialisation {
 
       <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
       <Link className="navbar-brand" to="/Home">
-          <img className="d-inline-block align-top header-logo" src={require('./imgs/omnee_logo_blue.png')} width="80"/>
-        </Link>
+        deeID
+         {//<img className="d-inline-block align-top header-logo" src={require('./imgs/omnee_logo_blue.png')} width="80"/>
+         }
+       </Link>
       <h5 className="my-0 mr-md-auto font-weight-normal"></h5>
       <nav className="my-2 my-md-0 mr-md-3">
         <Link to="/active" className="p-2 text-dark">Solutions</Link>

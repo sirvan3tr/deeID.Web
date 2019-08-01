@@ -52,14 +52,14 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "dotenv": "^2.0.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-route": "^1.0.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "truffle": "^5.0.12",
+    "truffle": "^5.0.29",
     "update": "^0.7.4",
     "web3": "^1.0.0-beta.37"
   },

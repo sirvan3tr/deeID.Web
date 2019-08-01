@@ -33,23 +33,26 @@ contract deeID {
     function addKey(string memory _title, string memory _key, string memory _comment) public {
         if(msg.sender == deeIdUser.owner) {
             keys.push(key(_title, _key, true, _comment, address(0)));
-        } 
+        }
     }
 
-    function lenKeys() public returns (uint size) { return keys.length; }
+    // returns the length of keys array
+    // i.e. number of keys stored
+    //
+    function lenKeys() public view returns (uint size) { return keys.length; }
 
-    function getKey(uint _index) view public returns(string memory, string memory,
+    function getKey(uint _index) public view returns(string memory, string memory,
             bool status, string memory, address approver) {
         return (keys[_index].title, keys[_index].key, keys[_index].status,
             keys[_index].comment, keys[_index].approver);
     }
 
-    function isApproved() view public returns (bool approved) {
+    function isApproved() public view returns (bool approved) {
         if(deeIdUser.approved == true) return true;
         return false;
     }
 
-    function msgServer() view public returns (string memory) {
+    function msgServer() public view returns (string memory) {
         return deeIdUser.msgServer;
     }
 
