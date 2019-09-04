@@ -10,10 +10,8 @@ class About extends Component {
     render() {
         return (
             <Router>
-                <div className="column middle">
-                    <h1>What is deeID?</h1>
-                    <h2>deeID is a decentralised identity and data management network</h2>
-                    <p> Enter text here for about page</p>
+                <div>
+                    deeID Information
                 </div>
             </Router>
         );

@@ -4,10 +4,9 @@ class Contact extends Component {
   render() {
     return (
       <div>
-        <h2>GOT QUESTIONS?</h2>
-        <h2>{this.props.name}</h2>
+        <h2>Got Questions?</h2>
         <p>
-          Hello world
+          Say hello...
         </p>
       </div>
     );

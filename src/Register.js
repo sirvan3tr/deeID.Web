@@ -34,7 +34,7 @@ class userRegistration extends userInitialisation {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.firstname);
+    alert('Attempting to create a new deeID identity');
     event.preventDefault();
 
     const contract = require('truffle-contract') ;
@@ -61,9 +61,10 @@ class userRegistration extends userInitialisation {
       deeIDPortal.deployed().then((instance) => {
         deeIDPortalInstance = instance ;
         return deeIDPortalInstance.createID.sendTransaction({from: accounts[0]})
-          //1, 'Sirvan', 'Almasi', 'email', '9876544321', {from: accounts[0]})
       }).then((result) => {
         console.log(result)
+      }, reason => {
+        console.log(reason); // Error!
       });
     });
   }
@@ -86,25 +87,9 @@ class userRegistration extends userInitialisation {
             <p>The thing is... you can't have your personal information on the Blockchain! You need our cool mobile phone app. You can register now and using the same public-private key pair login on your phone and initiatilise your details from there? Too much..? well we can also host your data for you if you want?</p>
             Your Ethereum address: <br />
             <p className="address">{this.userDetails.accountAddress}</p>
-            Use the form below if you wish to sign up and we store your data for you.
+
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label>First name</label>
-                <input name="firstname" type="text" className="form-control" id="registerFirstName" placeholder="e.g. Alice" onChange={this.handleChange} />
-              </div>
-              <div className="form-group">
-                <label>Surname</label>      
-                <input name="surname" type="text" className="form-control" id="registerSurname" placeholder="e.g. Smith" onChange={this.handleChange}/>
-              </div>
-              <div className="form-group">
-                <label>Email Address</label>
-                <input name="email" id="email" className="form-control" type="email" placeholder="e.g. a.smith@gmail.com" onChange={this.handleChange}/>
-              </div>
-              <div className="form-group">
-                <label>NHS Number</label>
-                <input name="nhsnumber" id="registerNHSNumber" className="form-control" placeholder="e.g. 987 654 4321" type="text" onChange={this.handleChange}/>
-              </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Create a blank deeID</button>
             </form>
           </div>
         </div>

@@ -138,7 +138,7 @@ class Home extends userInitialisation {
           <main role="main" className="container">
             <h1 className="mt-5">Welcome, {this.userDetails.name}</h1>
             <p className="lead">You have <span className="red">5</span> notifications, an urgent request from <a href="#">Great Ormond Street Hospital</a>, <span className="red">55</span> people have viewed your basic ID in the last 48 hours.</p>
-            <p>You have linked <a href="">35 data sources</a>, see what more you can do with omnee Data Bank!</p>
+            <p>You have linked <a href="">35 data sources</a></p>
             <form className="fl" onSubmit={this.handleGetLinks}>
               <button type="submit" className="btn btn-outline-primary">View my data</button>
             </form>
