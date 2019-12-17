@@ -5,6 +5,7 @@ contract deeID {
         uint entityType;
         address owner;
         string msgServer;
+        string domain;
         bool approved;
     }
 
